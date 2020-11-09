@@ -37,6 +37,7 @@ router.post("/login", (req, res) => {
     User.findOne({ email: req.body.email }, (err, user) => {
         if (!user)
             return res.json({
+                success: false,
                 loginSuccess: false,
                 message: "Auth failed, email not found"
             });
@@ -50,6 +51,7 @@ router.post("/login", (req, res) => {
                 res
                     .status(200)
                     .json({
+                        success: true,
                         loginSuccess: true,
                         id: user._id,
                         name: user.name,
